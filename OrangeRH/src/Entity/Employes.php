@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EmployesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EmployesRepository::class)
@@ -19,41 +20,50 @@ class Employes
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(min=2, max= 80)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(min=3, max= 80)
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10, max= 255)
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="date")
+     * 
      */
     private $dateArrive;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive
+     * @Assert\Length(min=1, max= 1, minMessage="Veuillez saisir un chiffre ne depassant pas 9")
      */
     private $echelon;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(min=5, max= 25, minMessage="Ceci est beaucoup trop court")
      */
     private $service;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Positive
      */
     private $salaire;
 

@@ -92,18 +92,11 @@ class OrangeController extends AbstractController
     }
 
     /** 
-     *  @Route ("/orange/{id}", name="editer")
+     *  @Route ("/orange/employe/suppression", name="supprimer_employe", methods = "DELETE")
     */
 
-    // public function edit(ObjectManager $property, Request $request)
-    // {
-    //     $form = $this->createForm(PropertyType::class, $property);
-    //     $form->handleRequest($request);
+    public function delete(Property $property)
+    {
 
-    //     if ($form->isSubmitted() && $form->isValid())
-    //     {
-    //         $this->manager->flush();
-    //     }
-    //     return $this->render('orange/editer.html.twig');
-    // }
+    }
 }
