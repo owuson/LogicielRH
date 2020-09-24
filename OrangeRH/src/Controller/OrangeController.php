@@ -79,4 +79,9 @@ class OrangeController extends AbstractController
     {
         return $this->render('orange/login.html.twig');
     }
+
+    public function delete()
+    {
+        return $this->render('orange/login.html.twig');
+    }
 }
