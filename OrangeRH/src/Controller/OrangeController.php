@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employes;
 use Doctrine\Persistence\ObjectManager;
+use PhpParser\Builder\Property;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,13 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 class OrangeController extends AbstractController
 {
     /**
-     * @Route("/orange", name="orange")
+     * @Route("/orange/listeemploye", name="orange")
      */
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Employes::class);
         $employes= $repo->findAll();
-        return $this->render('orange/index.html.twig', [
+        return $this->render('orange/listeEmploye.html.twig', [
             'controller_name' => 'OrangeController', 'employes' => $employes
         ]);
     }
@@ -33,12 +34,17 @@ class OrangeController extends AbstractController
     }
 
     /** 
-     *  @Route ("/orange/new", name="creer_employe")
+     *  @Route ("/orange/employe/new", name="creer_employe")
+     * @Route ("/orange/{id}/edit", name="modifier_employe")
     */
 
-    public function add(Request $requete, ObjectManager $manager)
+    public function form(Employes $employes = null, Request $requete, ObjectManager $manager)
     {
-        $employes = new Employes();
+        if(!$employes){
+
+            $employes = new Employes();
+
+        }
         $form = $this->createFormBuilder($employes)
                 ->add('Nom')
                 ->add('Prenom')
@@ -58,7 +64,11 @@ class OrangeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $employes->setDateArrive(new \DateTime());
+            if(!$employes->getId())
+            {
+                $employes->setDateArrive(new \DateTime());
+            }
+            
 
             $manager->persist($employes);
             $manager->flush();
@@ -67,7 +77,8 @@ class OrangeController extends AbstractController
         }
 
         return $this->render('orange/ajouter.html.twig', [
-            'formEmploye' => $form->createView()
+            'formEmploye' => $form->createView(),
+            'modifEmploye' => $employes -> getId() !== null
         ]);
     }
 
@@ -80,8 +91,19 @@ class OrangeController extends AbstractController
         return $this->render('orange/login.html.twig');
     }
 
-    public function delete()
-    {
-        return $this->render('orange/login.html.twig');
-    }
+    /** 
+     *  @Route ("/orange/{id}", name="editer")
+    */
+
+    // public function edit(ObjectManager $property, Request $request)
+    // {
+    //     $form = $this->createForm(PropertyType::class, $property);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $this->manager->flush();
+    //     }
+    //     return $this->render('orange/editer.html.twig');
+    // }
 }

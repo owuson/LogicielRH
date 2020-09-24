@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello OrangeController!{% endblock %}
+{% block title %}Liste des employées{% endblock %}
 
 {% block body %}
 <style>
@@ -47,8 +47,10 @@
         
     </section>
 
-    <button type="submit" class="btn btn-warning"> Modifier </button>
-    <button type="submit" class="btn btn-danger"> Supprimer </button>
+    <a href="{{ path('creer_employe') }}" class="btn btn-success"> Ajouter </a>
+    {# <a href="{{ path('modifier_employe') }}" class="btn btn-warning"> Modifier </a> #}
+    {# <a href="{{ path('supprimer_emplye') }}" class="btn btn-danger"> Supprimer </a> #}
+    
     {# <ul>
         <li>Your controller at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/src/Controller/OrangeController.php'|file_link(0) }}">src/Controller/OrangeController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/templates/orange/index.html.twig'|file_link(0) }}">templates/orange/index.html.twig</a></code></li>

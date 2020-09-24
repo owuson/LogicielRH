@@ -1,16 +1,30 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Ajouter un employées{% endblock %}
+
+
 {% form_theme formEmploye 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
     
-    <h1>Créer employé !</h1>
+    {% if modifEmploye %}
+        <h1>Modifier employé !</h1>
+    {% else %}
+        <h1>Ajouter employé !</h1>
+    {% endif %}
 
     {{ form_start(formEmploye) }}
 
     {{ form_widget(formEmploye) }}
 
-    <button type="submit" class="btn btn-success"> Ajouter Employe </button>
+    <button type="submit" class="btn btn-success"> 
+        {% if modifEmploye %}
+            Enregistrer la modification
+        {% else %}
+            Ajouter Employe
+        {% endif %}
+
+    </button>
 
     {{ form_end(formEmploye) }}
 
