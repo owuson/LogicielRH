@@ -5,10 +5,10 @@ security:
             cost: 12
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        users_in_memory: { memory: ~ }
         in_database:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Users
                 property: email
     firewalls:
         dev:
@@ -22,6 +22,10 @@ security:
             form_login:
                 login_path: page_login
                 check_path: page_login
+            
+            logout:
+                path: page_logout
+                target: home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

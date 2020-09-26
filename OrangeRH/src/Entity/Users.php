@@ -3,13 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
+ * @UniqueEntity(
+ *  fields = {"email"},
+ * message = "L'email que vous avez choisi est déjà utilisé !"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id
@@ -83,5 +89,20 @@ class Users
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
     }
 }

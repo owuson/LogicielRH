@@ -1,12 +1,14 @@
+{% extends "base.html.twig" %}
+
 {% block body %}
     <h1> Connexion </h1>
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
     
-            <form action="{{ path('home') }}" method="POST">
+            <form action="{{ path('page_login') }}" method="POST">
                 <input placeholder="Adresse mail" type="text" required name="_username">
-                <input type="text" required name="_password" class="fadeIn third" placeholder="Mot de passe">
+                <input type="password" required name="_password" class="fadeIn third" placeholder="Mot de passe">
                 <button type="submit" class="btn btn-success" value="Log In"> Connexion </button>
             </form>
         </div>
