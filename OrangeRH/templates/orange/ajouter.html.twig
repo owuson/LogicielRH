@@ -6,27 +6,36 @@
 {% form_theme formEmploye 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-    
-    {% if modifEmploye %}
-        <h1>Modifier employé !</h1>
-    {% else %}
-        <h1>Ajouter employé !</h1>
-    {% endif %}
 
-    {{ form_start(formEmploye) }}
-
-    {{ form_widget(formEmploye) }}
-
-    <button type="submit" class="btn btn-success"> 
+    {% if app.user %}    
         {% if modifEmploye %}
-            Enregistrer la modification
+            <h1>Modifier employé !</h1>
         {% else %}
-            Ajouter Employe
+            <h1>Ajouter employé !</h1>
         {% endif %}
 
-    </button>
+        {{ form_start(formEmploye) }}
 
-    {{ form_end(formEmploye) }}
+        {{ form_widget(formEmploye) }}
 
+        <button type="submit" class="btn btn-success"> 
+            {% if modifEmploye %}
+                Enregistrer la modification
+            {% else %}
+                Ajouter Employe
+            {% endif %}
+
+        </button>
+
+        {{ form_end(formEmploye) }}
+
+
+    
+
+    {% else %}
+
+        <h2> Veuillez vous connecter </h2>
+
+    {% endif %}
 
 {% endblock %}

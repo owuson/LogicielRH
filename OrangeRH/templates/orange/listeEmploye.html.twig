@@ -1,60 +1,70 @@
 {% extends "base.html.twig" %}
 
+
+
 {% block title %}Liste des employées{% endblock %}
 
 {% block body %}
-<style>
-    h1{ text-align: center; }
-</style>
+    {% if app.user %}   
+        <style>
+            h1{ text-align: center; }
+        </style>
 
-<div class="example-wrapper">
-    <h1>Employés d'Orange 🍊</h1>
+        <div class="example-wrapper">
+            <h1>Employés d'Orange 🍊</h1>
 
-    <section class = "employes">
-        
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">adresse</th>
-                    <th scope="col">Date Arrivé</th>
-                    <th scope="col">Echelon</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Salaire</th>
-                    <th scope="col">Congé Restant</th>
-                    <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                {% for employe in employes %}
-                    <tbody>
-                        <tr>
-                        <th scope="row">{{employe.id}}</th>
-                        <td>{{employe.nom}}</td>
-                        <td>{{employe.prenom}}</td>
-                        <td>{{employe.age}}</td>
-                        <td>{{employe.adresse}}</td>
-                        <td>{{employe.dateArrive | date("m/d/Y")}}</td>
-                        <td>{{employe.echelon}}</td>
-                        <td>{{employe.service}}</td>
-                        <td>{{employe.salaire}}</td>
-                        <td>{{employe.congeRestant}}</td>
-                        <td>{{employe.email}}</td>
-                        </tr>
-                    </tbody>
-                {% endfor %}
-            </table>
-        
-    </section>
+            <section class = "employes">
+                
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">adresse</th>
+                            <th scope="col">Date Arrivé</th>
+                            <th scope="col">Echelon</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Salaire</th>
+                            <th scope="col">Congé Restant</th>
+                            <th scope="col">Email</th>
+                            </tr>
+                        </thead>
+                        {% for employe in employes %}
+                            <tbody>
+                                <tr>
+                                <th scope="row">{{employe.id}}</th>
+                                <td>{{employe.nom}}</td>
+                                <td>{{employe.prenom}}</td>
+                                <td>{{employe.age}}</td>
+                                <td>{{employe.adresse}}</td>
+                                <td>{{employe.dateArrive | date("m/d/Y")}}</td>
+                                <td>{{employe.echelon}}</td>
+                                <td>{{employe.service}}</td>
+                                <td>{{employe.salaire}}</td>
+                                <td>{{employe.congeRestant}}</td>
+                                <td>{{employe.email}}</td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                
+            </section>
 
-    <a href="{{ path('creer_employe') }}" class="btn btn-success"> Ajouter </a>
+            <a href="{{ path('creer_employe') }}" class="btn btn-success"> Ajouter </a>
+            
+            
+            {# <ul>
+                <li>Your controller at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/src/Controller/OrangeController.php'|file_link(0) }}">src/Controller/OrangeController.php</a></code></li>
+                <li>Your template at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/templates/orange/index.html.twig'|file_link(0) }}">templates/orange/index.html.twig</a></code></li>
+            </ul> #}
+        </div>
     
-    
-    {# <ul>
-        <li>Your controller at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/src/Controller/OrangeController.php'|file_link(0) }}">src/Controller/OrangeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/templates/orange/index.html.twig'|file_link(0) }}">templates/orange/index.html.twig</a></code></li>
-    </ul> #}
-</div>
+
+    {% else %}
+
+        <h2> Veuillez vous connecter !</h2>
+
+    {% endif %}
 {% endblock %}
