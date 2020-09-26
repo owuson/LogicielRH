@@ -25,6 +25,7 @@
                     <th scope="col">Service</th>
                     <th scope="col">Salaire</th>
                     <th scope="col">Congé Restant</th>
+                    <th scope="col">Email</th>
                     </tr>
                 </thead>
                 {% for employe in employes %}
@@ -40,6 +41,7 @@
                         <td>{{employe.service}}</td>
                         <td>{{employe.salaire}}</td>
                         <td>{{employe.congeRestant}}</td>
+                        <td>{{employe.email}}</td>
                         </tr>
                     </tbody>
                 {% endfor %}

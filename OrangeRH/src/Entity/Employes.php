@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmployesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -71,6 +73,39 @@ class Employes
      * @ORM\Column(type="float", nullable=true)
      */
     private $congeRestant;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Conges::class, mappedBy="employes")
+     */
+    private $conges;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Message::class, inversedBy="employes")
+     */
+    private $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Licenciement::class, inversedBy="employes")
+     */
+    private $licenciement;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FicheDePaie::class, mappedBy="employes")
+     */
+    private $ficheDepaie;
+
+
+    /**
+     * @ORM\Column(type="string", length=80)
+     */
+    private $email;
+
+    public function __construct()
+    {
+        $this->conges = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->ficheDepaie = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -181,6 +216,115 @@ class Employes
     public function setCongeRestant(?float $congeRestant): self
     {
         $this->congeRestant = $congeRestant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Conges[]
+     */
+    public function getConges(): Collection
+    {
+        return $this->conges;
+    }
+
+    public function addConge(Conges $conge): self
+    {
+        if (!$this->conges->contains($conge)) {
+            $this->conges[] = $conge;
+            $conge->addEmploye($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConge(Conges $conge): self
+    {
+        if ($this->conges->contains($conge)) {
+            $this->conges->removeElement($conge);
+            $conge->removeEmploye($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+        }
+
+        return $this;
+    }
+
+    public function getLicenciement(): ?Licenciement
+    {
+        return $this->licenciement;
+    }
+
+    public function setLicenciement(?Licenciement $licenciement): self
+    {
+        $this->licenciement = $licenciement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FicheDePaie[]
+     */
+    public function getFicheDepaie(): Collection
+    {
+        return $this->ficheDepaie;
+    }
+
+    public function addFicheDepaie(FicheDePaie $ficheDepaie): self
+    {
+        if (!$this->ficheDepaie->contains($ficheDepaie)) {
+            $this->ficheDepaie[] = $ficheDepaie;
+            $ficheDepaie->setEmployes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFicheDepaie(FicheDePaie $ficheDepaie): self
+    {
+        if ($this->ficheDepaie->contains($ficheDepaie)) {
+            $this->ficheDepaie->removeElement($ficheDepaie);
+            // set the owning side to null (unless already changed)
+            if ($ficheDepaie->getEmployes() === $this) {
+                $ficheDepaie->setEmployes(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

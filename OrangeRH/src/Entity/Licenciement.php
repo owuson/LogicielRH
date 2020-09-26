@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LicenciementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Licenciement
      * @ORM\Column(type="text")
      */
     private $raison;
+
+    /**
+     * @ORM\OneToMany(targetEntity=employes::class, mappedBy="licenciement")
+     */
+    private $employes;
+
+    public function __construct()
+    {
+        $this->employes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,37 @@ class Licenciement
     public function setRaison(string $raison): self
     {
         $this->raison = $raison;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|employes[]
+     */
+    public function getEmployes(): Collection
+    {
+        return $this->employes;
+    }
+
+    public function addEmploye(employes $employe): self
+    {
+        if (!$this->employes->contains($employe)) {
+            $this->employes[] = $employe;
+            $employe->setLicenciement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmploye(employes $employe): self
+    {
+        if ($this->employes->contains($employe)) {
+            $this->employes->removeElement($employe);
+            // set the owning side to null (unless already changed)
+            if ($employe->getLicenciement() === $this) {
+                $employe->setLicenciement(null);
+            }
+        }
 
         return $this;
     }

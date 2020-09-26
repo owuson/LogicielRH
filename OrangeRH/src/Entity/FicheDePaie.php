@@ -47,6 +47,11 @@ class FicheDePaie
      */
     private $salaireHoraire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Employes::class, inversedBy="ficheDepaie")
+     */
+    private $employes;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class FicheDePaie
     public function setSalaireHoraire(float $salaireHoraire): self
     {
         $this->salaireHoraire = $salaireHoraire;
+
+        return $this;
+    }
+
+    public function getEmployes(): ?Employes
+    {
+        return $this->employes;
+    }
+
+    public function setEmployes(?Employes $employes): self
+    {
+        $this->employes = $employes;
 
         return $this;
     }

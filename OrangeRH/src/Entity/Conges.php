@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CongesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Conges
      * @ORM\Column(type="date")
      */
     private $dateDemande;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=employes::class, inversedBy="conges")
+     */
+    private $employes;
+
+    public function __construct()
+    {
+        $this->employes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,32 @@ class Conges
     public function setDateDemande(\DateTimeInterface $dateDemande): self
     {
         $this->dateDemande = $dateDemande;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|employes[]
+     */
+    public function getEmployes(): Collection
+    {
+        return $this->employes;
+    }
+
+    public function addEmploye(employes $employe): self
+    {
+        if (!$this->employes->contains($employe)) {
+            $this->employes[] = $employe;
+        }
+
+        return $this;
+    }
+
+    public function removeEmploye(employes $employe): self
+    {
+        if ($this->employes->contains($employe)) {
+            $this->employes->removeElement($employe);
+        }
 
         return $this;
     }

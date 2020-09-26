@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OrangeController extends AbstractController
 {
@@ -82,21 +84,20 @@ class OrangeController extends AbstractController
         ]);
     }
 
-    /** 
-     *  @Route ("/orange/login", name="login")
-    */
-
-    public function login()
+    /**
+ * @Route("/orange/employes/delete/{id<\d+>}", name="supprimer
+ * _employe")
+ */
+    public function delete(Request $request, Employes $employes)
     {
-        return $this->render('orange/login.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->remove($employes);
+        $em->flush();
+
+        // redirige la page
+        return $this->redirectToRoute('/orange/listeemploye');
     }
 
-    /** 
-     *  @Route ("/orange/employe/suppression", name="supprimer_employe", methods = "DELETE")
-    */
-
-    public function delete(Property $property)
-    {
-
-    }
+    
 }
