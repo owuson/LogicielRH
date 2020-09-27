@@ -4,25 +4,57 @@
         <meta charset="UTF-8">
         <title>{% block title %}Orange{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+        <link rel="shortcut icon" type="image/png" href="../public/img/logo.png"/>
 
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <body style = "background-image: url('../public/img/fondecran.png');">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
                     <a class="navbar-brand" href="/">Orange</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/orange/listeemploye">Employés <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
+                            {% if app.user %}
+                                <li class="nav-item active"> 
+                                    <a class = "nav-link"> Bonjour {{ app.user.userName }} ! </a> 
+                                </li>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/orange/listeemploye">Employés</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/orange/listeconges"> Congés</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Candidature recu</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"> Messagerie </a>
+                                </li>
+
+                            {% else %}
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/orange/listeemploye">Employés</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/orange/listeconges"> Congés</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Candidature recu</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"> Messagerie </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/security/inscription"> Créer son compte </a>
+                                </li>
+                            {% endif %}
 
                             {% if not app.user %}
                                 <li class="nav-item">

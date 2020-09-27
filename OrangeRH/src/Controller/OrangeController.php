@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Employes;
+use App\Entity\Conges;
+use App\Form\CongesType;
 use Doctrine\Persistence\ObjectManager;
 use PhpParser\Builder\Property;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +19,7 @@ class OrangeController extends AbstractController
     /**
      * @Route("/orange/listeemploye", name="orange")
      */
-    public function index()
+    public function listEmploye()
     {
         $repo = $this->getDoctrine()->getRepository(Employes::class);
         $employes= $repo->findAll();
@@ -99,5 +101,15 @@ class OrangeController extends AbstractController
         return $this->redirectToRoute('/orange/listeemploye');
     }
 
-    
+    /**
+     * @Route("/orange/listeconges", name="conge")
+     */
+    public function listConges()
+    {
+        $repo = $this->getDoctrine()->getRepository(Conges::class);
+        $conges = $repo->findAll();
+        return $this->render('orange/conges.html.twig', [
+            'controller_name' => 'OrangeController', 'conges' => $conges
+        ]);
+    }
 }

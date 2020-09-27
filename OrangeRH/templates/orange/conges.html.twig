@@ -2,7 +2,7 @@
 
 
 
-{% block title %}Liste des employées{% endblock %}
+{% block title %}Congés{% endblock %}
 
 {% block body %}
     {% if app.user %}   
@@ -11,40 +11,31 @@
         </style>
 
         <div class="example-wrapper">
-            <h1 style="background-color: grey; color: orange;">Employés d'Orange 🍊</h1>
+            <h1 style="background-color: grey; color: orange;"> Congés demandé 🍊</h1>
 
-            <section class = "employes">
+            <section class = "conges">
                 
                     <table class="table table-dark">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">adresse</th>
-                            <th scope="col">Date Arrivé</th>
-                            <th scope="col">Echelon</th>
-                            <th scope="col">Service</th>
-                            <th scope="col">Salaire</th>
+                            <th scope="col">Jours demandé</th>
+                            <th scope="col">Jours restant</th>
+                            <th scope="col">Statut</th>
                             <th scope="col">Congé Restant</th>
                             <th scope="col">Email</th>
                             </tr>
                         </thead>
-                        {% for employe in employes %}
+                        {% for conge in conges %}
                             <tbody>
                                 <tr>
                                 <th scope="row">{{employe.id}}</th>
-                                <td>{{employe.nom}}</td>
-                                <td>{{employe.prenom}}</td>
-                                <td>{{employe.age}}</td>
-                                <td>{{employe.adresse}}</td>
-                                <td>{{employe.dateArrive | date("m/d/Y")}}</td>
-                                <td>{{employe.echelon}}</td>
-                                <td>{{employe.service}}</td>
-                                <td>{{employe.salaire}}</td>
-                                <td>{{employe.congeRestant}}</td>
-                                <td>{{employe.email}}</td>
+                                <td>{{conges.jourDemande}}</td>
+                                <td>{{conges.jourRestant}}</td>
+                                <td>{{conges.statut}}</td>
+                                <td>{{conges.dateDemande}}</td>
+                                <td>{{employes.nom}}</td>
+                                <td>{{employes.email}}</td>
                                 </tr>
                             </tbody>
                         {% endfor %}
@@ -68,7 +59,7 @@
 
     {% else %}
 
-        <h2 style = "position: absolute; margin: auto; top: 0; right: 0; bottom: 0; left: 0; width: 70%; height: 40%; text-align: center;"> Veuillez vous connecter !</h2>
+        <h2 style = ""> Veuillez vous connecter !</h2>
 
     {% endif %}
 {% endblock %}

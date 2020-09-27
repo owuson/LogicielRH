@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajouter un employées{% endblock %}
+{% block title %}Demande de congés{% endblock %}
 
 
 {% form_theme formEmploye 'bootstrap_4_layout.html.twig' %}
@@ -8,23 +8,15 @@
 {% block body %}
 
     {% if app.user %}    
-        {% if modifEmploye %}
-            <h1>Modifier employé !</h1>
-        {% else %}
-            <h1>Ajouter employé !</h1>
-        {% endif %}
+        
+            <h1>  Demande de congés </h1>
 
-        {{ form_start(formEmploye) }}
+        {{ form_start(formConges) }}
 
-        {{ form_widget(formEmploye) }}
+        {{ form_widget(formConges) }}
 
         <button type="submit" class="btn btn-success"> 
-            {% if modifEmploye %}
-                Enregistrer la modification
-            {% else %}
-                Ajouter Employe
-            {% endif %}
-
+            Envoyer demande
         </button>
 
         {{ form_end(formEmploye) }}
