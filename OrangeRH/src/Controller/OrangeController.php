@@ -112,4 +112,31 @@ class OrangeController extends AbstractController
             'controller_name' => 'OrangeController', 'conges' => $conges
         ]);
     }
+
+    /**
+     * @Route("/orange/statistique", name ="stat")
+     */
+
+    public function statistique()
+    {
+        return $this->render('orange/statistique.html.twig');
+    }
+
+    /**
+     * @Route("/orange/messages", name ="stat")
+     */
+
+    public function messages()
+    {
+        return $this->render('orange/messagerie.html.twig');
+    }
+
+    /**
+     * @Route("/orange/candidature", name ="candidature")
+     */
+
+    public function candidature()
+    {
+        return $this->render('orange/candidature.html.twig');
+    }
 }
