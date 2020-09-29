@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Employes;
 use App\Entity\Conges;
+use App\Entity\Message;
+use App\Entity\Licenciement;
+use App\Entity\FicheDePaie;
 use App\Form\CongesType;
 use Doctrine\Persistence\ObjectManager;
 use PhpParser\Builder\Property;
@@ -114,6 +117,38 @@ class OrangeController extends AbstractController
     }
 
     /**
+     * @Route("/orange/demandeconges", name="demandeConge")
+     */
+    public function demandeConges(Conges $conges = null, Request $requete, ObjectManager $manager)
+    {
+        if(!$conges){
+
+            $employes = new Conges();
+
+        }
+        $form = $this->createFormBuilder($conges)
+                ->add('dateDemande')
+                ->add('jourDemande')           
+                ->add('employes')
+                ->getForm();
+
+        $form->handleRequest($requete);
+
+        if($form->isSubmitted() && $form->isValid())
+        {   
+
+            $manager->persist($conges);
+            $manager->flush();
+
+            // return $this->redirectToRoute('orange', ['id' => $employes->getId()]);
+        }
+
+        return $this->render('orange/demandeConge.html.twig', [
+            'formConges' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/orange/statistique", name ="stat")
      */
 
@@ -123,7 +158,7 @@ class OrangeController extends AbstractController
     }
 
     /**
-     * @Route("/orange/messages", name ="stat")
+     * @Route("/orange/messages", name ="message")
      */
 
     public function messages()
