@@ -46,6 +46,8 @@
                                 <td>{{employe.congeRestant}}</td>
                                 <td>{{employe.email}}</td>
                                 </tr>
+                                {# <a href='{{ path('supprimer_employe', {'id' : employes.employe.id })}}' class = "btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> #}
                             </tbody>
                         {% endfor %}
                     </table>
@@ -54,10 +56,10 @@
 
             <a href="{{ path('creer_employe') }}" class="btn btn-success"> Ajouter </a>
 
-            {# <a href "{{ path('modifier_employe', { id: employes.id }) }}" class="btn btn-warning"> Modifier </a> #}
+            {# <a href "{{ path('modifier_employe') }}" class="btn btn-warning"> Modifier </a> #}
 
-            {# <a href "{{ path('supprimer_employe') }}" class="btn btn-danger"> Supprimer </a> #}
-            
+            {# <a href "{{ path('supprimer_employe') }}" class="btn btn-danger"> Supprimer </a>
+            #}
             
             {# <ul>
                 <li>Your controller at <code><a href="{{ '/Users/phillipowusu/Desktop/LogicielRH/OrangeRh/src/Controller/OrangeController.php'|file_link(0) }}">src/Controller/OrangeController.php</a></code></li>

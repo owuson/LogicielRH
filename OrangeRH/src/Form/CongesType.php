@@ -12,9 +12,12 @@ class CongesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDemande')
-            ->add('jourDemande')           
-            ->add('employes')
+            // ->add('dateDemande')
+            ->add('jourDemande')
+            ->add('dueDate', DateType::class, [
+                'placeholder' => 'Select a value',
+            ]);
+            // ->add('employes')
         ;
     }
 
