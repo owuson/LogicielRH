@@ -11,7 +11,7 @@ class CongesFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 1; $i <= 1000; $i++)
+        for($i = 1; $i <= 100; $i++)
         {
             $conges = new Conges();
             $conges-> setJourDemande($i);

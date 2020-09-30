@@ -11,7 +11,7 @@
         </style>
 
         <div class="example-wrapper">
-            <h1 style="background-color: grey; color: orange;"> Congés demandé 🍊</h1>
+            <h1 style="background-color: grey; color: orange;"> Congés demandé </h1>
 
             <section class = "conges">
                 
@@ -29,13 +29,12 @@
                         {% for conge in conges %}
                             <tbody>
                                 <tr>
-                                {# <th scope="row">{{employes.id}}</th> #}
-                                {# <td>{{conges.jourDemande}}</td> #}
-                                {# <td>{{conges.jourRestant}}</td> #}
-                                {# <td>{{conges.statut}}</td> #}
-                                {# <td>{{conges.dateDemande}}</td> #}
-                                {# <td>{{employes.nom}}</td>
-                                <td>{{employes.email}}</td> #}
+                                <th scope="row">{{conges.id}}</th>
+                                {<td>{{conges.jourDemande | date("m/d/Y")}}</td>
+                                <td>{{conges.jourRestant}}</td>
+                                <td>{{conges.statut}}</td>
+                                {<td>{{conges.dateDemande | date("m/d/Y")}}</td>
+                                {# <td>{{Employes.email}}</td> #}
                                 </tr>
                             </tbody>
                         {% endfor %}

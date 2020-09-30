@@ -129,7 +129,7 @@ class OrangeController extends AbstractController
         $form = $this->createFormBuilder($conges)
                 ->add('dateDemande')
                 ->add('jourDemande')           
-                ->add('employes')
+                ->add('email')
                 ->getForm();
 
         $form->handleRequest($requete);
