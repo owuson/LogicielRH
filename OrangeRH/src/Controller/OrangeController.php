@@ -111,7 +111,7 @@ class OrangeController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Conges::class);
         $conges = $repo->findAll();
-        return $this->render('orange/conges.html.twig', [
+        return $this->render('orange/listeConges.html.twig', [
             'controller_name' => 'OrangeController', 'conges' => $conges
         ]);
     }

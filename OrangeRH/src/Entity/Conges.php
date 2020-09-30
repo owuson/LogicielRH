@@ -40,7 +40,7 @@ class Conges
     private $dateDemande;
 
     /**
-     * @ORM\ManyToMany(targetEntity=employes::class, inversedBy="conges")
+     * @ORM\ManyToMany(targetEntity=Employes::class, inversedBy="conges")
      */
     private $employes;
 
@@ -103,14 +103,14 @@ class Conges
     }
 
     /**
-     * @return Collection|employes[]
+     * @return Collection|Employes[]
      */
     public function getEmployes(): Collection
     {
         return $this->employes;
     }
 
-    public function addEmploye(employes $employe): self
+    public function addEmploye(Employes $employe): self
     {
         if (!$this->employes->contains($employe)) {
             $this->employes[] = $employe;
@@ -119,7 +119,7 @@ class Conges
         return $this;
     }
 
-    public function removeEmploye(employes $employe): self
+    public function removeEmploye(Employes $employe): self
     {
         if ($this->employes->contains($employe)) {
             $this->employes->removeElement($employe);

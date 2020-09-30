@@ -29,13 +29,13 @@
                         {% for conge in conges %}
                             <tbody>
                                 <tr>
-                                <th scope="row">{{Employes.id}}</th>
-                                <td>{{conges.jourDemande}}</td>
-                                <td>{{conges.jourRestant}}</td>
-                                <td>{{conges.statut}}</td>
-                                <td>{{conges.dateDemande}}</td>
-                                <td>{{Employes.nom}}</td>
-                                <td>{{Employes.email}}</td>
+                                {# <th scope="row">{{employes.id}}</th> #}
+                                {# <td>{{conges.jourDemande}}</td> #}
+                                {# <td>{{conges.jourRestant}}</td> #}
+                                {# <td>{{conges.statut}}</td> #}
+                                {# <td>{{conges.dateDemande}}</td> #}
+                                {# <td>{{employes.nom}}</td>
+                                <td>{{employes.email}}</td> #}
                                 </tr>
                             </tbody>
                         {% endfor %}
@@ -43,7 +43,7 @@
                 
             </section>
 
-            <a href="{{ path('creer_employe') }}" class="btn btn-success"> Ajouter </a>
+            <a href="{{ path('demandeConge') }}" class="btn btn-success"> Ajouter </a>
 
             {# <a href "{{ path('modifier_employe', { id: employes.id }) }}" class="btn btn-warning"> Modifier </a> #}
 
