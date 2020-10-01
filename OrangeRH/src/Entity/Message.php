@@ -39,6 +39,11 @@ class Message
      */
     private $employes;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $titre;
+
     public function __construct()
     {
         $this->employes = new ArrayCollection();
@@ -109,6 +114,18 @@ class Message
             $this->employes->removeElement($employe);
             $employe->removeMessage($this);
         }
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(?string $titre): self
+    {
+        $this->titre = $titre;
 
         return $this;
     }

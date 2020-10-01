@@ -8,6 +8,7 @@ use App\Entity\Message;
 use App\Entity\Licenciement;
 use App\Entity\FicheDePaie;
 use App\Form\CongesType;
+use App\Repository\MessageRepository;
 use Doctrine\Persistence\ObjectManager;
 use PhpParser\Builder\Property;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -168,9 +169,21 @@ class OrangeController extends AbstractController
      * @Route("/messages", name ="message")
      */
 
-    public function messages()
+    public function messages(MessageRepository $messageRepository): Response
     {
-        return $this->render('orange/messagerie.html.twig');
+        return $this->render('orange/messagerie.html.twig', [
+            'messages' => $messageRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/messages/{id}", name="messages_show", methods={"GET"})
+     */
+    public function showMessage(MessageRepository $message): Response
+    {
+        return $this->render('orange/show.html.twig', [
+            'message' => $message,
+        ]);
     }
 
     /**

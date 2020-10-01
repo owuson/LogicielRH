@@ -10,13 +10,18 @@ class MessageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 1; $i <= 100; $i++)
+        $faker = \Faker\Factory::create('fr_FR');
+
+        for($i = 1; $i <= 50; $i++)
         {
+            $contenu = '<p>'.join($faker->paragraphs(3), '</p><p>').'</p>';
             $message = new message();
-            $message->setContenu("Apero !");
+            $message->setTitre($faker->sentence());
+            $message->setDate($faker->dateTime());
+            $message->setContenu($contenu);
             $message->setStatut(true);
-            $message->setDate(new \DateTime());
             $manager->persist($message);
+
         }
         $manager->flush();
     }

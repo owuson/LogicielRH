@@ -1,11 +1,37 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %} Messagerie {% endblock %}
-
+{% block title %}Messagerie{% endblock %}
 
 {% block body %}
+    <h1  style = "color : orange; text-align: center; background-color: grey;">Messages</h1>
 
-<h1 style="background-color: grey; color: orange; text-align: center;"> Messagerie </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Objet</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td style = "color: white;">{{ message.titre}}</td>
+                <td style = "color: white;">{{ message.Date|date('Y-m-d')}}</td>
+                <td style = "color: white;">{{ message.statut }}</td>
+                <td style = "color: white;">{{ message.contenu }}</td>
+                <td>
+                    <button class="btn btn-success"> <a  href="{{ path('messages_show', {'id': message.id}) }}"> Afficher </a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-
+    {# <button class = "btn btn-success"> <a href="{{ path('message_new') }}"> Nouveau Message </a></button> #}
 {% endblock %}
