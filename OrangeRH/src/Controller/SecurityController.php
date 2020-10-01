@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
 {
     
     /**
-     * @Route("/security/inscription", name="security_inscription")
+     * @Route("/inscription", name="security_inscription")
      */
 
 
@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/security/login", name="page_login")
+     * @Route("/login", name="page_login")
      */
     public function login()
     {
@@ -53,7 +53,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/security/logout", name="page_logout")
+     * @Route("/logout", name="page_logout")
      */
     public function logout()
     {}

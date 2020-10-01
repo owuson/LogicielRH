@@ -156,7 +156,7 @@ class OrangeController extends AbstractController
 //     }
 
     /**
-     * @Route("/orange/statistique", name ="stat")
+     * @Route("/statistique", name ="stat")
      */
 
     public function statistique()
@@ -165,7 +165,7 @@ class OrangeController extends AbstractController
     }
 
     /**
-     * @Route("/orange/messages", name ="message")
+     * @Route("/messages", name ="message")
      */
 
     public function messages()
@@ -174,7 +174,7 @@ class OrangeController extends AbstractController
     }
 
     /**
-     * @Route("/orange/candidature", name ="candidature")
+     * @Route("/candidature", name ="candidature")
      */
 
     public function candidature()
