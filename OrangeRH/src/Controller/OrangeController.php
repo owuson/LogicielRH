@@ -93,15 +93,20 @@ class OrangeController extends AbstractController
  * @Route("/orange/employes/delete/{id<\d+>}", name="supprimer
  * _employe")
  */
-    public function delete(Request $request, Employes $employes)
+    public function delete(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $session = $request->getSession();
+        $employes = $session->get('employes');
+        if (!empty($employes[$id])) {
+            unset($employes[$id]); 
+        // $em = $this->getDoctrine()->getManager();
         
-        $em->remove($employes);
-        $em->flush();
+        // $em->remove($employes);
+        // $em->flush();
 
-        // redirige la page
-        return $this->redirectToRoute('/orange/listeemploye');
+        // // redirige la page
+        // return $this->redirectToRoute('/orange/listeemploye');
+        }
     }
 
     /**
@@ -118,18 +123,19 @@ class OrangeController extends AbstractController
 
     /**
      * @Route("/orange/demandeconges", name="demandeConge")
+     * @Route ("/orange/{id}/editconges", name="modifier_conges")
      */
-    public function demandeConges(Conges $conges = null, Request $requete, ObjectManager $manager)
+    public function demandeConges(Conges $conges = null, Employes $employes, Request $requete, ObjectManager $manager)
     {
-        if(!$conges){
+        if(!$conges && !$employes){
 
             $conges = new Conges();
+            $employes = new Employes();
 
         }
         $form = $this->createFormBuilder($conges)
                 ->add('dateDemande')
-                ->add('jourDemande')           
-                ->add('email')
+                ->add('jourDemande')
                 ->getForm();
 
         $form->handleRequest($requete);
@@ -140,11 +146,12 @@ class OrangeController extends AbstractController
             $manager->persist($conges);
             $manager->flush();
 
-            // return $this->redirectToRoute('orange', ['id' => $employes->getId()]);
+            return $this->redirectToRoute('orange', ['id' => $conges->getId()]);
         }
 
         return $this->render('orange/demandeConge.html.twig', [
             'formConges' => $form->createView(),
+            'modifConges' => $conges -> getId() !== null
         ]);
     }
 

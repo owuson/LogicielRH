@@ -19,21 +19,21 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Jours demandé</th>
-                            <th scope="col">Jours restant</th>
+                            <th scope="col">Date de debut</th>
+                            <th scope="col"> Nombre de jours </th>
+                            <th scope="col">Congés restant</th>
                             <th scope="col">Statut</th>
-                            <th scope="col">Congé Restant</th>
-                            <th scope="col">Email</th>
+                            {# <th scope="col">Email</th> #}
                             </tr>
                         </thead>
                         {% for conge in conges %}
                             <tbody>
                                 <tr>
-                                <th scope="row">{{conges.id}}</th>
-                                {<td>{{conges.jourDemande | date("m/d/Y")}}</td>
-                                <td>{{conges.jourRestant}}</td>
-                                <td>{{conges.statut}}</td>
-                                {<td>{{conges.dateDemande | date("m/d/Y")}}</td>
+                                <th scope="row">{{conge.id}}</th>
+                                <td>{{conge.dateDemande | date("m/d/Y")}}
+                                <td>{{conge.jourDemande}}</td>
+                                <td>{{conge.jourRestant}}</td>
+                                <td>{{conge.statut}}</td>
                                 {# <td>{{Employes.email}}</td> #}
                                 </tr>
                             </tbody>

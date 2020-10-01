@@ -46,8 +46,8 @@
                                 <td>{{employe.congeRestant}}</td>
                                 <td>{{employe.email}}</td>
                                 </tr>
-                                {# <a href='{{ path('supprimer_employe', {'id' : employes.employe.id })}}' class = "btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i> #}
+                                <a href='{{ path('supprimer_employe', {'id' : employes.id })}}' class = "btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
                             </tbody>
                         {% endfor %}
                     </table>
