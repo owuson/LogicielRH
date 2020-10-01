@@ -3,7 +3,7 @@
 {% block title %}Employes{% endblock %}
 
 {% block body %}
-    <h1 style="background-color: grey; color: orange; text-align: center;">Employes</h1>
+    <h1  style = "color : orange; text-align: center; background-color: grey;">Employes</h1>
 
     <table class="table">
         <thead>
@@ -25,20 +25,20 @@
         <tbody>
         {% for employe in employes %}
             <tr>
-                <td>{{ employe.id }}</td>
-                <td>{{ employe.nom }}</td>
-                <td>{{ employe.prenom }}</td>
-                <td>{{ employe.age }}</td>
-                <td>{{ employe.adresse }}</td>
-                <td>{{ employe.dateArrive ? employe.dateArrive|date('Y-m-d') : '' }}</td>
-                <td>{{ employe.echelon }}</td>
-                <td>{{ employe.service }}</td>
-                <td>{{ employe.salaire }}</td>
-                <td>{{ employe.congeRestant }}</td>
-                <td>{{ employe.email }}</td>
+                <td style = "color: white;">{{ employe.id }}</td>
+                <td style = "color: white;">{{ employe.nom }}</td>
+                <td style = "color: white;">{{ employe.prenom }}</td>
+                <td style = "color: white;">{{ employe.age }}</td>
+                <td style = "color: white;">{{ employe.adresse }}</td>
+                <td style = "color: white;">{{ employe.dateArrive ? employe.dateArrive|date('Y-m-d') : '' }}</td>
+                <td style = "color: white;">{{ employe.echelon }}</td>
+                <td style = "color: white;">{{ employe.service }}</td>
+                <td style = "color: white;">{{ employe.salaire }}</td>
+                <td style = "color: white;">{{ employe.congeRestant }}</td>
+                <td style = "color: white;">{{ employe.email }}</td>
                 <td>
-                    <a href="{{ path('employes_show', {'id': employe.id}) }}">show</a>
-                    <a href="{{ path('employes_edit', {'id': employe.id}) }}">edit</a>
+                    <button class="btn btn-success"> <a  href="{{ path('employes_show', {'id': employe.id}) }}"> Afficher </a></button>
+                    <button class = "btn btn-warning"> <a  href="{{ path('employes_edit', {'id': employe.id}) }}">Modifier </a> </button>
                 </td>
             </tr>
         {% else %}
@@ -49,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('employes_new') }}">Ajouter</a>
+    <button class = "btn btn-success"> <a href="{{ path('employes_new') }}"> Ajouter </a></button>
 {% endblock %}

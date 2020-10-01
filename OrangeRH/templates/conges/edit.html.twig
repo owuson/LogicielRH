@@ -3,6 +3,12 @@
 {% block title %}Edit Conges{% endblock %}
 
 {% block body %}
+
+        <style>
+            body{ background-image: url('/assets/fondecran.png');}
+        </style>
+
+
     <h1 style= "text-align: center;">Conges Editer</h1>
 
     {{ include('conges/_form.html.twig', {'button_label': 'Update'}) }}

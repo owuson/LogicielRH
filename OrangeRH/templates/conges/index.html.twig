@@ -3,6 +3,11 @@
 {% block title %}Conges index{% endblock %}
 
 {% block body %}
+
+        <style>
+            body{ background-image: url('/assets/fondecran.png');}
+        </style>
+
     <h1 style="background-color: grey; color: orange; text-align: center;">Conges</h1>
 
     <table class="table">
@@ -19,11 +24,11 @@
         <tbody>
         {% for conge in conges %}
             <tr>
-                <td>{{ conge.id }}</td>
-                <td>{{ conge.jourDemande }}</td>
-                <td>{{ conge.jourRestant }}</td>
-                <td>{{ conge.statut ? 'Yes' : 'No' }}</td>
-                <td>{{ conge.dateDemande ? conge.dateDemande|date('Y-m-d') : '' }}</td>
+                <td style = "color: white;">{{ conge.id }}</td>
+                <td style = "color: white;">{{ conge.jourDemande }}</td>
+                <td style = "color: white;">{{ conge.jourRestant }}</td>
+                <td style = "color: white;">{{ conge.statut ? 'Yes' : 'No' }}</td>
+                <td style = "color: white;">{{ conge.dateDemande ? conge.dateDemande|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('conges_show', {'id': conge.id}) }}">show</a>
                     <a href="{{ path('conges_edit', {'id': conge.id}) }}">edit</a>
