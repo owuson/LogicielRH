@@ -2,29 +2,33 @@
 
 namespace App\Form;
 
-use App\Entity\Conges;
+use App\Entity\Employes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CongesType extends AbstractType
+class EmployesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('dateDemande')
-            ->add('jourDemande')
-            ->add('dueDate', DateType::class, [
-                'placeholder' => 'Select a value',
-            ]);
-            // ->add('employes')
+            ->add('nom')
+            ->add('prenom')
+            ->add('age')
+            ->add('adresse')
+            ->add('dateArrive')
+            ->add('echelon')
+            ->add('service')
+            ->add('salaire')
+            ->add('congeRestant')
+            ->add('email')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Conges::class,
+            'data_class' => Employes::class,
         ]);
     }
 }

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conges index{% endblock %}
+
+{% block body %}
+    <h1 style="background-color: grey; color: orange; text-align: center;">Conges</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>JourDemande</th>
+                <th>JourRestant</th>
+                <th>Statut</th>
+                <th>DateDemande</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conge in conges %}
+            <tr>
+                <td>{{ conge.id }}</td>
+                <td>{{ conge.jourDemande }}</td>
+                <td>{{ conge.jourRestant }}</td>
+                <td>{{ conge.statut ? 'Yes' : 'No' }}</td>
+                <td>{{ conge.dateDemande ? conge.dateDemande|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('conges_show', {'id': conge.id}) }}">show</a>
+                    <a href="{{ path('conges_edit', {'id': conge.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('conges_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Conges{% endblock %}
+
+{% block body %}
+    <h1 style= "text-align: center;">Conges Editer</h1>
+
+    {{ include('conges/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <button class= "btn btn-success" href="{{ path('conges_index') }}">back to list</button>
+
+    {{ include('conges/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Statistique {% endblock %}
+{% block body %}
+
+<form method="post" action="{{ path('employes_delete', {'id': employe.id}) }}" onsubmit="return confirm('Etes-vous sure de vouloir le supprimer?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ employe.id) }}">
+    <button class="btn btn-success">Delete</button>
+</form>
+
+{% endblock %}

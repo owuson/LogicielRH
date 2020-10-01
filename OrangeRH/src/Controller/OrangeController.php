@@ -19,17 +19,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OrangeController extends AbstractController
 {
-    /**
-     * @Route("/orange/listeemploye", name="orange")
-     */
-    public function listEmploye()
-    {
-        $repo = $this->getDoctrine()->getRepository(Employes::class);
-        $employes= $repo->findAll();
-        return $this->render('orange/listeEmploye.html.twig', [
-            'controller_name' => 'OrangeController', 'employes' => $employes
-        ]);
-    }
+    // /**
+    //  * @Route("/orange/listeemploye", name="orange")
+    //  */
+    // public function listEmploye()
+    // {
+    //     $repo = $this->getDoctrine()->getRepository(Employes::class);
+    //     $employes= $repo->findAll();
+    //     return $this->render('orange/listeEmploye.html.twig', [
+    //         'controller_name' => 'OrangeController', 'employes' => $employes
+    //     ]);
+    // }
 
     /**
      * @Route("/", name ="home")
@@ -40,120 +40,120 @@ class OrangeController extends AbstractController
         return $this->render('orange/home.html.twig');
     }
 
-    /** 
-     *  @Route ("/orange/employe/new", name="creer_employe")
-     * @Route ("/orange/{id}/edit", name="modifier_employe")
-    */
+//     /** 
+//      *  @Route ("/orange/employe/new", name="creer_employe")
+//      * @Route ("/orange/{id}/edit", name="modifier_employe")
+//     */
 
-    public function form(Employes $employes = null, Request $requete, ObjectManager $manager)
-    {
-        if(!$employes){
+//     public function form(Employes $employes = null, Request $requete, ObjectManager $manager)
+//     {
+//         if(!$employes){
 
-            $employes = new Employes();
+//             $employes = new Employes();
 
-        }
-        $form = $this->createFormBuilder($employes)
-                ->add('Nom')
-                ->add('Prenom')
-                ->add('Age')
-                ->add('Adresse')
-                // ->add('Date d\'arriver')
-                ->add('Echelon')
-                ->add('Service')
-                ->add('Salaire')
-                // ->add('Congés Restant')
-                // ->add('save', SubmitType::class, [
-                //     'label' => 'Enregistrer'
-                // ])
-                ->getForm();
+//         }
+//         $form = $this->createFormBuilder($employes)
+//                 ->add('Nom')
+//                 ->add('Prenom')
+//                 ->add('Age')
+//                 ->add('Adresse')
+//                 // ->add('Date d\'arriver')
+//                 ->add('Echelon')
+//                 ->add('Service')
+//                 ->add('Salaire')
+//                 // ->add('Congés Restant')
+//                 // ->add('save', SubmitType::class, [
+//                 //     'label' => 'Enregistrer'
+//                 // ])
+//                 ->getForm();
 
-        $form->handleRequest($requete);
+//         $form->handleRequest($requete);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            if(!$employes->getId())
-            {
-                $employes->setDateArrive(new \DateTime());
-            }
+//         if($form->isSubmitted() && $form->isValid())
+//         {
+//             if(!$employes->getId())
+//             {
+//                 $employes->setDateArrive(new \DateTime());
+//             }
             
 
-            $manager->persist($employes);
-            $manager->flush();
+//             $manager->persist($employes);
+//             $manager->flush();
 
-            return $this->redirectToRoute('orange', ['id' => $employes->getId()]);
-        }
+//             return $this->redirectToRoute('orange', ['id' => $employes->getId()]);
+//         }
 
-        return $this->render('orange/ajouter.html.twig', [
-            'formEmploye' => $form->createView(),
-            'modifEmploye' => $employes -> getId() !== null
-        ]);
-    }
+//         return $this->render('orange/ajouter.html.twig', [
+//             'formEmploye' => $form->createView(),
+//             'modifEmploye' => $employes -> getId() !== null
+//         ]);
+//     }
 
-    /**
- * @Route("/orange/employes/delete/{id<\d+>}", name="supprimer
- * _employe")
- */
-    public function delete(Request $request, $id)
-    {
-        $session = $request->getSession();
-        $employes = $session->get('employes');
-        if (!empty($employes[$id])) {
-            unset($employes[$id]); 
-        // $em = $this->getDoctrine()->getManager();
+//     /**
+//  * @Route("/orange/employes/delete/{id<\d+>}", name="supprimer
+//  * _employe")
+//  */
+//     public function delete(Request $request, $id)
+//     {
+//         $session = $request->getSession();
+//         $employes = $session->get('employes');
+//         if (!empty($employes[$id])) {
+//             unset($employes[$id]); 
+//         // $em = $this->getDoctrine()->getManager();
         
-        // $em->remove($employes);
-        // $em->flush();
+//         // $em->remove($employes);
+//         // $em->flush();
 
-        // // redirige la page
-        // return $this->redirectToRoute('/orange/listeemploye');
-        }
-    }
+//         // // redirige la page
+//         // return $this->redirectToRoute('/orange/listeemploye');
+//         }
+//     }
 
-    /**
-     * @Route("/orange/listeconges", name="conge")
-     */
-    public function listConges()
-    {
-        $repo = $this->getDoctrine()->getRepository(Conges::class);
-        $conges = $repo->findAll();
-        return $this->render('orange/listeConges.html.twig', [
-            'controller_name' => 'OrangeController', 'conges' => $conges
-        ]);
-    }
+//     /**
+//      * @Route("/orange/listeconges", name="conge")
+//      */
+//     public function listConges()
+//     {
+//         $repo = $this->getDoctrine()->getRepository(Conges::class);
+//         $conges = $repo->findAll();
+//         return $this->render('orange/listeConges.html.twig', [
+//             'controller_name' => 'OrangeController', 'conges' => $conges
+//         ]);
+//     }
 
-    /**
-     * @Route("/orange/demandeconges", name="demandeConge")
-     * @Route ("/orange/{id}/editconges", name="modifier_conges")
-     */
-    public function demandeConges(Conges $conges = null, Employes $employes, Request $requete, ObjectManager $manager)
-    {
-        if(!$conges && !$employes){
+//     /**
+//      * @Route("/orange/demandeconges", name="demandeConge")
+//      * @Route ("/orange/{id}/editconges", name="modifier_conges")
+//      */
+//     public function demandeConges(Conges $conges = null, Employes $employes, Request $requete, ObjectManager $manager)
+//     {
+//         if(!$conges && !$employes){
 
-            $conges = new Conges();
-            $employes = new Employes();
+//             $conges = new Conges();
+//             $employes = new Employes();
 
-        }
-        $form = $this->createFormBuilder($conges)
-                ->add('dateDemande')
-                ->add('jourDemande')
-                ->getForm();
+//         }
+//         $form = $this->createFormBuilder($conges)
+//                 ->add('dateDemande')
+//                 ->add('jourDemande')
+//                 ->getForm();
 
-        $form->handleRequest($requete);
+//         $form->handleRequest($requete);
 
-        if($form->isSubmitted() && $form->isValid())
-        {   
+//         if($form->isSubmitted() && $form->isValid())
+//         {   
 
-            $manager->persist($conges);
-            $manager->flush();
+//             $manager->persist($conges);
+//             $manager->flush();
 
-            return $this->redirectToRoute('orange', ['id' => $conges->getId()]);
-        }
+//             return $this->redirectToRoute('orange', ['id' => $conges->getId()]);
+//         }
 
-        return $this->render('orange/demandeConge.html.twig', [
-            'formConges' => $form->createView(),
-            'modifConges' => $conges -> getId() !== null
-        ]);
-    }
+//         return $this->render('orange/demandeConge.html.twig', [
+//             'formConges' => $form->createView(),
+//             'modifConges' => $conges -> getId() !== null
+//         ]);
+//     }
 
     /**
      * @Route("/orange/statistique", name ="stat")

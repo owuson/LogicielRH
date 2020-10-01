@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Conges{% endblock %}
+
+{% block body %}
+    <h1>Create new Conges</h1>
+
+    {{ include('conges/_form.html.twig') }}
+
+    <a href="{{ path('conges_index') }}">back to list</a>
+{% endblock %}
