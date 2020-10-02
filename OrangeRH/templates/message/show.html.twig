@@ -8,11 +8,11 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <td>{{ message.id }}</td>
             </tr>
             <tr>
-                <th>Contenu</th>
+                <th>Titre</th>
                 <td>{{ message.titre }}</td>
             </tr>
             <tr>
@@ -24,13 +24,13 @@
                 <td>{{ message.statut ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
+                <th>Contenu</th>
                 <td>{{ message.contenu }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('listemessages') }}">back to list</a>
+    <a href="{{ path('listemessages') }}">Retour aux messages</a>
 
     {# <a href="{{ path('message_edit', {'id': message.id}) }}">edit</a> #}
 

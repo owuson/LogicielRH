@@ -4,7 +4,7 @@
 
 {% block head %} 
 <style>
-body{ background-image: url('assets/fondecran2.png');}
+    body{ background-image: url('assets/fondecran2.png');}
             #area-chart,
             #line-chart,
             #bar-chart,
@@ -19,28 +19,8 @@ body{ background-image: url('assets/fondecran2.png');}
 
 <h1 style="background-color: grey; color: orange; text-align: center;"> Statistiques </h1>
 
-<div class"row">
-    <div class="col-sm-6 text-center">
-        <label class="label label-success">Area Chart</label>
-    <div id="area-chart" ></div>
-    </div>
-    <div class="col-sm-6 text-center">
-        <label class="label label-success">Line Chart</label>
-    <div id="line-chart"></div>
-    </div>
-    <div  class="col-sm-6 text-center">
-        <label class="label label-success">Bar Chart</label>
-    <div id="bar-chart" ></div>
-    </div>
-    <div class="col-sm-6 text-center">
-        <label class="label label-success">Bar stacked</label>
-    <div id="stacked" ></div>
-    </div>
-    <div class="col-sm-6 col-sm-offset-3 text-center">
-        <label class="label label-success">Pie Chart</label>
-    <div id="pie-chart" ></div>
-    </div>   
-</div>
+<iframe title="[Service Orange ]" aria-label="chart" id="datawrapper-chart-34HA3" src="https://datawrapper.dwcdn.net/34HA3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="554"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+</script>
 
 <script> 
     var data = [
@@ -57,18 +37,19 @@ body{ background-image: url('assets/fondecran2.png');}
 { y: '2024', a: 160, b: 95}
     ],
     config = {
-    data: data,
-    xkey: 'y',
-    ykeys: ['a', 'b'],
-    labels: ['Total Income', 'Total Outcome'],
-    fillOpacity: 0.6,
-    hideHover: 'auto',
-    behaveLikeLine: true,
-    resize: true,
-    pointFillColors:['#ffffff'],
-    pointStrokeColors: ['black'],
-    lineColors:['gray','red']
-  };
+        data: data,
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Total Income', 'Total Outcome'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','red']
+    };
+    
 config.element = 'area-chart';
 Morris.Area(config);
 config.element = 'line-chart';
@@ -79,13 +60,13 @@ config.element = 'stacked';
 config.stacked = true;
 Morris.Bar(config);
 Morris.Donut({
-  element: 'pie-chart',
-  data: [
-    {label: "Friends", value: 30},
-    {label: "Allies", value: 15},
-    {label: "Enemies", value: 45},
-    {label: "Neutral", value: 10}
-  ]
+    element: 'pie-chart',
+    data: [
+        {label: "Friends", value: 30},
+        {label: "Allies", value: 15},
+        {label: "Enemies", value: 45},
+        {label: "Neutral", value: 10}
+    ]
 });
 
 </script>

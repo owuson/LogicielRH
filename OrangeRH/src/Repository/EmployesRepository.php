@@ -47,4 +47,13 @@ class EmployesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function search($nom)
+    {
+        return $this->createQueryBuilder('Employes')
+            ->andWhere('Employes.nom LIKE :nom')
+            ->setParameter('nom', '%' . $nom . '%')
+            ->getQuery()
+            ->execute();
+    }
 }
