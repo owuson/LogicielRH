@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
-    
+
     /**
      * @Route("/inscription", name="security_inscription")
      */
@@ -26,11 +26,10 @@ class SecurityController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($users, $users->getPassword());
 
-            $users->setPassword($hash); 
+            $users->setPassword($hash);
 
             $manager->persist($users);
             $manager->flush();
@@ -56,5 +55,6 @@ class SecurityController extends AbstractController
      * @Route("/logout", name="page_logout")
      */
     public function logout()
-    {}
+    {
+    }
 }
